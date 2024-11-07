@@ -23,12 +23,12 @@ public class OnlineStoreApp {
         // Feature AliSina: Price Reduction Notification System
         // Subscribe to price drop notifications and product price changes
         PriceDropObserver priceObserver = new PriceDropObserver();
-        priceObserver.subscribe(new User("Alice")); // Подписываем пользователя на уведомление о снижении цены
-        laptop.setPriceObserver(priceObserver); // Привязываем наблюдателя к продукту
+        priceObserver.subscribe(new User("Alice")); 
+        laptop.setPriceObserver(priceObserver); 
 
         System.out.println("\n--- Price Drop Notification ---");
         System.out.println("Setting new price for laptop...");
-        laptop.setPrice(900.0); // Снижаем цену, что вызовет уведомление для подписчиков
+        laptop.setPrice(900.0);
 
         
         cartController.updateView();

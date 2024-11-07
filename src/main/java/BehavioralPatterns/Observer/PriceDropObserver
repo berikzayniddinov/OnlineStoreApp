@@ -1,0 +1,22 @@
+package BehavioralPatterns.Observer;
+import MVC.Model.Product;
+import MVC.Model.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PriceDropObserver {
+    private List<User> subscribers = new ArrayList<>();
+
+    public void subscribe(User user) {
+        subscribers.add(user);
+    }
+
+    public void notifySubscribers(Product product, double oldPrice) {
+        if (product.getPrice() < oldPrice) {
+            for (User user : subscribers) {
+                user.notify("Price for " + product.getName() + " dropped to " + product.getPrice());
+            }
+        }
+    }
+}

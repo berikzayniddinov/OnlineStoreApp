@@ -19,6 +19,14 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
     
     public void setPriceObserver(PriceDropObserver priceObserver) {
     }

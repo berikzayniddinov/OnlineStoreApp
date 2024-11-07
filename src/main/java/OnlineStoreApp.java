@@ -3,6 +3,7 @@ import MVC.Model.Product;
 import CreationalPatterns.Singleton.CartSingleton;
 import StructuralPatterns.Decorator.ProductDiscountDecorator;
 import MVC.view.CartView;
+import BehavioralPatterns.Observer.PriceDropObserver;
 public class OnlineStoreApp {
     public static void main(String[] args) {
         CartSingleton cartSingleton = new CartSingleton();
@@ -18,5 +19,18 @@ public class OnlineStoreApp {
 
         ProductDiscountDecorator discountedLaptop = new ProductDiscountDecorator(laptop, 10);
         System.out.println("Discount price: " + discountedLaptop.getDiscountedPrice());
+
+        // Feature AliSina: Price Reduction Notification System
+        // Subscribe to price drop notifications and product price changes
+        PriceDropObserver priceObserver = new PriceDropObserver();
+        priceObserver.subscribe(new User("Alice")); // Подписываем пользователя на уведомление о снижении цены
+        laptop.setPriceObserver(priceObserver); // Привязываем наблюдателя к продукту
+
+        System.out.println("\n--- Price Drop Notification ---");
+        System.out.println("Setting new price for laptop...");
+        laptop.setPrice(900.0); // Снижаем цену, что вызовет уведомление для подписчиков
+
+        
+        cartController.updateView();
     }
 }

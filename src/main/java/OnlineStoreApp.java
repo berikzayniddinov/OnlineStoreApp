@@ -20,6 +20,17 @@ public class OnlineStoreApp {
         ProductDiscountDecorator discountedLaptop = new ProductDiscountDecorator(laptop, 10);
         System.out.println("Discount price: " + discountedLaptop.getDiscountedPrice());
 
+        // Feature Ibragim: Recommendations based on browsing history
+        // Create browsing history and receive recommendations
+        List<Product> viewedProducts = Arrays.asList(laptop);
+        RecommendationStrategy recommendationStrategy = new RecommendationBasedOnHistory(viewedProducts);
+        List<Product> recommendations = recommendationStrategy.recommend(Arrays.asList(laptop, ebook));
+
+        System.out.println("\n--- Recommendations Based on Viewing History ---");
+        for (Product recommendedProduct : recommendations) {
+            System.out.println("- " + recommendedProduct.getName());
+        }
+
         // Feature AliSina: Price Reduction Notification System
         // Subscribe to price drop notifications and product price changes
         PriceDropObserver priceObserver = new PriceDropObserver();

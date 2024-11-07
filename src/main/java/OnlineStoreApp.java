@@ -20,7 +20,23 @@ public class OnlineStoreApp {
         ProductDiscountDecorator discountedLaptop = new ProductDiscountDecorator(laptop, 10);
         System.out.println("Discount price: " + discountedLaptop.getDiscountedPrice());
 
-        // Feature Ibragim: Recommendations based on browsing history
+        // Function Myrzan: Review and rating system
+        // Add reviews to the product and display them on the screen
+        System.out.println("\n--- Product Reviews ---");
+        laptop.addReview(new Review(new User("Alice"), "Excellent laptop!", 5));
+        ebook.addReview(new Review(new User("Bob"), "Good e-book, very useful.", 4));
+
+        System.out.println("Reviews for " + laptop.getName() + ":");
+        for (Review review : laptop.getReviews()) {
+            System.out.println(review);
+        }
+        System.out.println("Reviews for " + ebook.getName() + ":");
+        for (Review review : ebook.getReviews()) {
+            System.out.println(review);
+        }
+
+
+        // Function Ibragim: Recommendations based on browsing history
         // Create browsing history and receive recommendations
         List<Product> viewedProducts = Arrays.asList(laptop);
         RecommendationStrategy recommendationStrategy = new RecommendationBasedOnHistory(viewedProducts);
@@ -31,7 +47,7 @@ public class OnlineStoreApp {
             System.out.println("- " + recommendedProduct.getName());
         }
 
-        // Feature AliSina: Price Reduction Notification System
+        // Function AliSina: Price Reduction Notification System
         // Subscribe to price drop notifications and product price changes
         PriceDropObserver priceObserver = new PriceDropObserver();
         priceObserver.subscribe(new User("Alice")); 
